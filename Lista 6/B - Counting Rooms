@@ -1,0 +1,41 @@
+from collections import deque
+
+def bfs(matriz, x, y, n, m):
+    fila = deque([(x, y)])
+    matriz[x][y]
+    while fila:
+        i, j = fila.popleft()
+        if i+1 < n and matriz[i+1][j] == ".":
+            fila.append((i+1, j))
+            matriz[i+1][j] = "#"
+        if i-1 >= 0 and matriz[i-1][j] == ".":
+            fila.append((i-1, j))
+            matriz[i-1][j] = "#"
+        if  j+1 < m and matriz[i][j+1] == ".":
+            fila.append((i, j+1))
+            matriz[i][j+1] = "#"
+        if j-1 >= 0 and matriz[i][j-1] == ".":
+            fila.append((i, j-1))
+            matriz[i][j-1] = "#"
+
+def main():
+    n, m = map(int, input().split())
+    matriz = [[] for _ in range(n)]
+    
+    coordenadas = []
+    for i in range(n):
+        entrada = input()
+        for j in range(m):
+            matriz[i].append(entrada[j])
+            if entrada[j] == ".":
+                coordenadas.append((i, j))
+    
+    n_comodos = 0
+    for i, j in coordenadas:
+        if matriz[i][j] == ".":
+            n_comodos += 1
+            bfs(matriz, i, j, n, m)
+    
+    print(n_comodos)
+
+main()
