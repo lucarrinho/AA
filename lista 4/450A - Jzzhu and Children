@@ -1,0 +1,16 @@
+from collections import deque
+
+def main():
+    n, m = map(int, input().split())
+    lista = list(map(int, input().split()))
+    a = deque([(lista[i], i+1) for i in range(n)])
+    
+    while len(a) > 0:
+        docesAReceber, crianca = a.popleft()
+        docesAReceber -= m
+        if docesAReceber > 0:
+            a.append((docesAReceber, crianca))
+    
+    print(crianca)
+        
+main()

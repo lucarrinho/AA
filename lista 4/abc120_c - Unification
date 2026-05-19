@@ -1,0 +1,18 @@
+def main():
+    s = input()
+    n = len(s)
+    pilha = []
+    for c in s:
+        if len(pilha) == 0:
+            pilha.append(c)
+        else:
+            if c == pilha[-1]:
+                pilha.append(c)
+            else:
+                pilha.pop()
+    
+    print(n-len(pilha))
+
+main()
+
+#alternativamente, eu poderia simplesmente contar a quantidade de 0's e 1's e retornar 2 * min(num0's, num1's)

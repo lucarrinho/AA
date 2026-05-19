@@ -1,0 +1,24 @@
+def main():
+    N, M, O = map(int, input().split())
+    
+    #quantidade de cada ingrediente
+    ingredientes = [int(n) for n in input().split()]
+    
+    #descrição dos M pratos, com seus x ingredientes de tipo i numa quantidade qmi
+    pratos = {}
+    for z in range(1,M+1):
+        n_ingredientes_prato = int(input())
+        prato = {}
+        for _ in range(n_ingredientes_prato):
+            i, qmi = map(int, input().split())
+            prato[i] = prato.get(i, 0) + qmi
+        pratos[z] = mi
+
+    #descrição do pedido
+    o = []
+    for _ in range(O):
+        oi = [int(n) for n in input().split()] 
+    
+    print('desistencia até segunda ordem')
+
+main()

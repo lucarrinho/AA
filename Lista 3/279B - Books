@@ -1,0 +1,21 @@
+def main():
+    n, t = [int(num) for num in input().split()]
+    livros = [int(tempos) for tempos in input().split()]
+    
+    maior_num_livros = 0
+    left = 0
+    right = 0
+    duracao = livros[0]
+    while right < n:
+        if duracao > t:
+            duracao -= livros[left]
+            left += 1
+        else:
+            maior_num_livros = max(maior_num_livros, right-left+1)
+            right += 1
+            if right < n:
+                duracao += livros[right]
+    
+    print(maior_num_livros)
+
+main()

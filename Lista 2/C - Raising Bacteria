@@ -1,0 +1,11 @@
+def Brian_Kerninghan(n):
+    count = 0
+    while n:
+        n &= (n-1)
+        count += 1
+    return count
+
+def main():
+    print(Brian_Kerninghan(int(input())))
+
+main()

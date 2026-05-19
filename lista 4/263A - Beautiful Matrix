@@ -1,0 +1,19 @@
+def main():
+    posicao = (-1, -1)
+    for x in range(5):
+        linha = input().split()
+        if posicao == (-1, -1):
+            for y in range(len(linha)):
+                if linha[y] == '1':
+                    posicao = (x, y)
+                    break
+    
+    distancia_linha, distancia_coluna = abs(2 - posicao[0]), abs(2 - posicao[1])
+    minimum_moves = distancia_linha + distancia_coluna
+    print(minimum_moves)
+    
+    
+            
+        
+
+main()

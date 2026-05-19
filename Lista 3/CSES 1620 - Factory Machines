@@ -1,0 +1,23 @@
+def producao(T, k, meta):
+    soma = 0
+    for el in k:
+        soma += T // el
+        if soma >= meta:
+            return meta
+    return soma
+
+def main():
+    n, t = map(int, input().split())
+    k = list(map(int, input().split()))
+    
+    maior = 10**18
+    menor = t // n
+    while menor < maior:
+        medio = (menor + maior) // 2
+        if producao(medio, k, t) >= t:
+            maior = medio
+        else:
+            menor = medio + 1
+    
+    print(menor)
+main()

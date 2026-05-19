@@ -1,0 +1,19 @@
+def inicio_possivel(intervalo, crib):
+    for i in range(len(intervalo)):
+        if intervalo[i] == crib[i]:
+            return False
+    return True
+
+def main():
+    mensagem = input()
+    crib = input()
+    
+    n_inicios = 0
+    for i in range(len(mensagem)-len(crib)+1):
+        intervalo = mensagem[i:(i+len(crib))]
+        if inicio_possivel(intervalo, crib):
+            n_inicios += 1
+    
+    print(n_inicios)
+
+main()

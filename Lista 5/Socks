@@ -1,0 +1,16 @@
+def main():
+    n = int(input())
+    meias = list(map(int, input().split()))
+    
+    conjuntos = {}
+    pares = 0
+    for meia in meias:
+        conjuntos[meia] = conjuntos.get(meia, 0) + 1
+        if conjuntos[meia] >= 2:
+            n_pares = conjuntos[meia] // 2
+            pares += n_pares
+            conjuntos[meia] -= n_pares * 2
+    
+    print(pares)
+
+main()

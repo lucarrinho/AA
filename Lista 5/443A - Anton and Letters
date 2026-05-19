@@ -1,0 +1,10 @@
+def main():
+    s = input().strip("{}").split(", ")
+    s = set(s)
+    s = list(s)
+    if s == ['']:
+        print(0)
+    else:
+        print(len(s)) 
+
+main()

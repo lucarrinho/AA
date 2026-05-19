@@ -1,0 +1,26 @@
+def localiza_valores_a_somar(valores, x, n):
+    esq = 0
+    dir = n-1
+    while esq < dir:
+        soma = valores[esq][0] + valores[dir][0]
+        
+        if soma == x:
+            i1, i2 = min(valores[esq][1], valores[dir][1]), max(valores[esq][1], valores[dir][1])
+            return str(i1)+" "+str(i2)
+            break
+        elif soma > x:
+            dir -= 1
+        else:
+            esq += 1
+    return "IMPOSSIBLE"
+
+def main():
+    n, x = map(int, input().split())
+    a = list(map(int, input().split()))
+    
+    valores = [(a[i], i+1) for i in range(n)]
+    valores.sort()
+    
+    print(localiza_valores_a_somar(valores, x, n))
+
+main()

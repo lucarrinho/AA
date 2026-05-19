@@ -1,0 +1,17 @@
+def localiza_valores_a_somar(a, x):
+    adict = {}
+    for i in range(len(a)):
+        complemento = x - a[i]
+        if complemento in adict:
+            return str(adict[complemento]) + " " + str(i+1)
+        else:
+            adict[a[i]] = i+1
+    return "IMPOSSIBLE"
+
+def main():
+    n, x = map(int, input().split())
+    a = list(map(int, input().split()))
+    
+    print(localiza_valores_a_somar(a, x))
+
+main()

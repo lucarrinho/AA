@@ -1,0 +1,17 @@
+def main():
+    s = input()
+    pontos_montanha = [0]
+    maior = 0
+    i_maior = 0
+    for i in range(len(s)):
+        if s[i] == '+':
+            altura = pontos_montanha[i] + 1
+            if altura > maior:
+                maior, i_maior = altura, i+1
+        elif s[i] == '-':
+            altura = pontos_montanha[i] - 1
+        pontos_montanha.append(altura)
+    
+    print(i_maior)
+
+main()

@@ -1,0 +1,15 @@
+def main():
+    n, q = [int(num) for num in input().split()]
+    
+    x = [int(num) for num in input().split()]
+    soma_x = [0]*(n+1)
+    for i in range(len(x)):
+        soma_x[i+1] = x[i] + soma_x[i]
+    
+    for _ in range(q):
+        a, b = map(int, input().split())
+        soma_intervalo = soma_x[b] - soma_x[a-1]
+    
+        print(soma_intervalo)
+
+main()

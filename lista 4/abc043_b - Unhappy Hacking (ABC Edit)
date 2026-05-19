@@ -1,0 +1,13 @@
+def main():
+    s = input()
+
+    editor = []
+    for c in s:
+        if c == '0' or c == '1':
+            editor.append(c)
+        elif c == 'B' and len(editor) > 0:
+            editor.pop()
+
+    print("".join(editor))
+
+main()

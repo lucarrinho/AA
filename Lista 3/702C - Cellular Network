@@ -1,0 +1,20 @@
+def main():
+    n, m = list(map(int, input().split()))
+    cidades = list(map(int, input().split()))
+    torres = list(map(int, input().split()))
+    
+    nTorresConferidas = 0
+    maiorDistanciaCidadeTorre = 0
+    for c in range(n):
+        DistanciaMenorCidadeTorre = abs(cidades[c] - torres[0])
+        for t in range(nTorresConferidas, m):
+            if abs(cidades[c] - torres[t]) > DistanciaMenorCidadeTorre:
+                nTorresConferidas = t-1
+                break
+            DistanciaMenorCidadeTorre = min(DistanciaMenorCidadeTorre, abs(cidades[c] - torres[t]))
+            if nTorresConferidas < m-1:
+                nTorresConferidas += 1
+        maiorDistanciaCidadeTorre = max(DistanciaMenorCidadeTorre, maiorDistanciaCidadeTorre)
+    
+    print(maiorDistanciaCidadeTorre)
+main()

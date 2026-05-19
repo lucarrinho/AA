@@ -1,0 +1,24 @@
+def main():
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    a.sort()
+    
+    meio = n // 2
+    menor, maior = a[meio], a[meio]+k
+    while menor < maior:
+        target = (menor + maior + 1) // 2
+        total = 0
+        for i in range(meio, n):
+            if a[i] < target:
+                total += target - a[i]
+                if total > k:
+                    break
+        
+        if total <= k:
+            menor = target
+        else:
+            maior = target -1
+    
+    print(menor)
+
+main()

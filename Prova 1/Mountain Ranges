@@ -1,0 +1,32 @@
+def main():
+    n, m = map(int, input().split())
+    h = list(map(int, input().split()))
+
+    esq = 1
+    dir = 1000000
+    k = -1
+    while esq <= dir:
+        alvo = (esq + dir) // 2
+        
+        n_cordilheiras = 1
+        for i in range(n-1):
+            if abs(h[i] - h[i+1]) > alvo:
+                n_cordilheiras += 1
+        
+        if n_cordilheiras <= m:
+            k = alvo
+            dir = alvo - 1
+        else:
+            esq = alvo + 1
+
+    n_cordilheiras2 = 1
+    for i in range(n-1):
+            if abs(h[i] - h[i+1]) > k:
+                n_cordilheiras2 += 1
+
+    if n_cordilheiras2 == m:
+        print(k)
+    else:
+        print(-1)
+
+main()

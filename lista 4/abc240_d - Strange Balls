@@ -1,0 +1,21 @@
+def main():
+    n = int(input())
+    bolas = list(map(int, input().split()))
+    
+    totalBolas = 0
+    cilindro = []
+    for bola in bolas:
+        if cilindro and cilindro[-1][0] == bola:
+            quantidadeBolas = cilindro[-1][1] + 1
+            cilindro[-1] = (bola, quantidadeBolas)
+            totalBolas += 1
+            if quantidadeBolas == bola:
+                cilindro.pop()
+                totalBolas -= bola
+        else:
+            cilindro.append((bola, 1))
+            totalBolas += 1
+        
+        print(totalBolas)
+
+main()

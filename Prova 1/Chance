@@ -1,0 +1,22 @@
+# somma de prefixos
+MAXNUM = 100000
+primos = [2, 3, 5, 7, 11, 13, 17]
+prefixos = [0] * (MAXNUM + 1)
+
+for num in range(1, MAXNUM+1):
+    qtdd_uns = bin(num).count('1')
+    if qtdd_uns in primos:
+        prefixos[num] = 1
+    prefixos[num] += prefixos[num-1]
+
+# inicio do programa real
+
+t = int(input())
+resp = []
+for _ in range(t):
+    l, r = map(int, input().split())
+    if l == 0:
+        resp.append(str(prefixos[r]))
+    else:
+        resp.append(str(prefixos[r] - prefixos[l-1]))
+print("\n".join(resp))

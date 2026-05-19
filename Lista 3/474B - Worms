@@ -1,0 +1,25 @@
+def main():
+    n_pilhas = int(input())
+    pilhas_desord = list(map(int, input().split()))
+    n_vermes_suculentos = int(input())
+    vermes_suculentos = list(map(int, input().split()))
+
+    #prefix sum
+    pilhas = [pilhas_desord[0]]
+    for i in range(1, n_pilhas):
+        pilhas.append(pilhas_desord[i]+pilhas[i-1])
+
+    for verme in vermes_suculentos:
+        ini = 0
+        fim = n_pilhas-1
+
+        while ini < fim:
+            meio = (ini + fim) // 2
+            if pilhas[meio] < verme:
+                ini = meio + 1
+            elif pilhas[meio] >= verme:
+                fim = meio
+
+        print(ini+1)
+
+main()

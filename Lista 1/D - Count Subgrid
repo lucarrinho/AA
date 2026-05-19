@@ -1,0 +1,25 @@
+def pertence(item, lista):
+    for e in lista:
+        if item == e:
+            return True
+    return False
+
+def main():
+    n, m = [int(num) for num in input().split()]
+    grade_n = []
+    for _ in range(n):
+        linha = input()
+        grade_n.append(linha)
+    
+    padroes = []
+    for x in range(n-m+1):
+        for j in range(n-m+1):
+            padrao = []
+            for i in range(x,x+m):
+                padrao.append(grade_n[i][j:(j+m)])
+            if not pertence(padrao, padroes):
+                padroes.append(padrao)
+    
+    print(len(padroes))
+
+main()
