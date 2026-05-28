@@ -1,4 +1,11 @@
 def main():
-    n = 
+    n = int(input())
+    celula = list(map(int, input().split()))
+    
+    for i in range(n-1, -1, -1):
+        if celula[i] != i+1:
+            celula[i] = celula[celula[i]-1]
+    
+    print(" ".join(str(num) for num in celula))
 
 main()

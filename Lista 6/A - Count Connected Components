@@ -1,0 +1,29 @@
+from collections import deque
+
+def bfs(i, grafo, visitados):
+    fila = deque([i])
+    while fila:
+        nodo_atual = fila.popleft()
+        for nodo in grafo[nodo_atual]:
+            if nodo not in visitados:
+                visitados.add(nodo)
+                fila.append(nodo)
+
+def main():
+    n, m = map(int, input().split())
+    nodos = [[] for _ in range(n)]
+    for _ in range(m):
+        u, v = map(int, input().split())
+        nodos[u-1].append(v-1)
+        nodos[v-1].append(u-1)
+    
+    componentes = 0
+    visitados = set()
+    for i in range(n):
+        if i not in visitados:
+            componentes += 1
+            bfs(i, nodos, visitados)
+    
+    print(componentes)
+
+main()

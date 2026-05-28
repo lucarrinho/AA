@@ -1,0 +1,36 @@
+from collections import deque
+
+def main():
+    n, m = map(int, input().split())
+    
+    preco = list(map(int, input().split()))
+    amigos = [[] for _ in range(n)]
+    for _ in range(m):
+        x, y = map(int, input().split())
+        amigos[x-1].append(y-1)
+        amigos[y-1].append(x-1)
+    
+    valor = 0
+    visitados = [False]*n
+    for i in range(n):
+        if not visitados[i]:
+            
+            fila = deque([i])
+            visitados[i] = True
+            menor_valor_comp = float('inf')
+            
+            while fila:
+                nodo_atual = fila.popleft()
+                if preco[nodo_atual] < menor_valor_comp:
+                    menor_valor_comp = preco[nodo_atual]
+                for prox_nodo in amigos[nodo_atual]:
+                    if not visitados[prox_nodo]:
+                        visitados[prox_nodo] = True
+                        fila.append(prox_nodo)
+            
+            valor += menor_valor_comp
+    
+    print(valor)
+                
+
+main()

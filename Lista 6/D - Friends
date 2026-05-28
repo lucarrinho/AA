@@ -1,0 +1,32 @@
+from collections import deque
+
+def main():
+    n, m = map(int, input().split())
+    pessoas = [[] for _ in range(n+1)]
+    for _ in range(m):
+        a, b = map(int, input().split())
+        pessoas[a].append(b)
+        pessoas[b].append(a)
+    
+    maior_tamanho = 0
+    
+    visitados = [False]*(n+1)
+    visitados[0] = True
+    for i in range(n):
+        if not visitados[i]:
+            tamanho_grupinho = 0
+            fila = deque([i])
+            visitados[i] = True
+            while fila:
+                nodo_atual = fila.popleft()
+                tamanho_grupinho += 1
+                for amigo in pessoas[nodo_atual]:
+                    if not visitados[amigo]:
+                        fila.append(amigo)
+                        visitados[amigo] = True
+            if tamanho_grupinho > maior_tamanho:
+                maior_tamanho = tamanho_grupinho
+    
+    print(maior_tamanho)
+
+main()
