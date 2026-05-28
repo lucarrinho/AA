@@ -1,4 +1,39 @@
+from collections import deque
+
+def bfs(key, grafo, visitados, resp):
+    fila = deque([key])
+    visitados.add(key)
+    while fila:
+        no_atual = fila.popleft()
+        resp.append(str(no_atual))
+        for vizinho in grafo[no_atual]:
+            if not vizinho in visitados:
+                fila.append(vizinho)
+                visitados.add(vizinho)
+
 def main():
+    n = int(input())
+    nums = list(map(int, input().split()))
     
+    grafo = {}
+    for num in nums:
+        grafo[num] = []
+    
+    for num in nums:
+        if (num % 2 == 0) and (num//2) in nums:
+            grafo[num].append((num//2))
+            grafo[(num//2)].append(num)
+        if num * 3 in nums:
+            grafo[num].append((num*3))
+            grafo[(num*3)].append(num)
+
+    visitados = set()
+    resp = []
+    for key in grafo:
+        if len(grafo[key]) == 1 and ((grafo[key][0] == key*2) or (key % 3 == 0 and grafo[key][0] == key // 3)):
+            bfs(key, grafo, visitados, resp)
+            break
+    
+    print(" ".join(resp))
 
 main()
