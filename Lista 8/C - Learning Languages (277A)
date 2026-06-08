@@ -1,0 +1,28 @@
+def find(x, pais):
+    if pais[x] < 0:
+        return x
+    pais[x] = find(pais[x], pais)
+    return pais[x]
+
+def union(idioma, pessoa, pais):
+    raiz_idioma, raiz_pessoa = find(idioma, pais), find(pessoa, pais)
+    if raiz_idioma == raiz_pessoa: return False
+    pais[raiz_idioma] += pais[raiz_pessoa]
+    pais[raiz_pessoa] = raiz_idioma
+    return True
+
+n, m = map(int, input().split())
+grafo = [-1]*(n+m)
+for i in range(n):
+    entrada = list(map(int, input().split()))
+    n_idiomas = entrada[0]
+    for j in range(1, n_idiomas+1):
+        i_idioma = n-1 + entrada[j]
+        union(i_idioma, i, grafo)
+
+n_comp = 0
+for v in grafo:
+    if v < 0:
+        n_comp += 1
+print(grafo)
+print(n_comp-1)

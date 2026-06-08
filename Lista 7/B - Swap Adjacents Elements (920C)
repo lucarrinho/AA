@@ -1,0 +1,34 @@
+def find(x, pais):
+    if pais[x] < 0:
+        return x
+    pais[x] = find(pais[x], pais)
+    return pais[x]
+
+def union(a, b, pais):
+    raiz_a = find(a, pais)
+    raiz_b = find(b, pais)
+    if raiz_a == raiz_b:
+        return False
+    if pais[raiz_b] < pais[raiz_a]:
+        raiz_a, raiz_b = raiz_b, raiz_a
+    pais[raiz_a] += pais[raiz_b]
+    pais[raiz_b] = raiz_a
+    return True
+
+n = int(input())
+nums = list(map(int, input().split()))
+permissao = input()
+
+pais = [-1]*n
+for i in range(n-1):
+    if permissao[i] == "1":
+        union(i, i+1, pais)
+
+out = "YES"
+for i in range(n):
+    valor = nums[i]
+    if find(valor-1, pais) != find(i, pais):
+        out = "NO"
+        break
+
+print(out)

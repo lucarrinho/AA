@@ -1,0 +1,37 @@
+from heapq import heappush, heappop
+
+def dijkstra(n, grafo, inicio):
+    dist = [float('inf')]*(n+1)
+    pais = [-1]*(n+1)
+    dist[inicio] = 0
+    heap = [(0, inicio)]
+    while heap:
+        dist_atual, no = heappop(heap)
+        if dist_atual > dist[no]:
+            continue
+        for vizinho, peso in grafo[no]:
+            nova_dist = dist[no] + peso
+            if nova_dist < dist[vizinho]:
+                dist[vizinho] = nova_dist
+                pais[vizinho] = no
+                heappush(heap, (nova_dist, vizinho))
+    return pais
+
+n, m = map(int, input().split())
+grafo = [[] for _ in range(n+1)]
+for _ in range(m):
+    a, b, w = map(int, input().split())
+    grafo[a].append((b, w))
+    grafo[b].append((a, w))
+
+pais = dijkstra(n, grafo, 1)
+if pais[n] == -1:
+    print(-1)
+else:
+    caminho = [str(n)]
+    ponteiro = pais[n]
+    while ponteiro != -1:
+        caminho.append(str(ponteiro))
+        ponteiro = pais[ponteiro]
+    
+    print(" ".join(caminho[::-1]))

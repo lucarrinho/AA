@@ -1,0 +1,6 @@
+from collections import deque
+
+n = int(input())
+p1 = list(map(int, input().split()))
+p2 = list(map(int, input().split()))
+

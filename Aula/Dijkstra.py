@@ -1,3 +1,5 @@
+from heapq import heappush, heappop # min-heap
+
 def dijkstra(grafo, inicio): #inicio: nó inicial
     n = len(grafo) #numero de nós
     # distância inicial, infinita para todos
@@ -14,3 +16,17 @@ def dijkstra(grafo, inicio): #inicio: nó inicial
         # percorre os vizinhos do nó
         for vizinho, peso in grafo[no]:
             nova_dist = dist[no] + peso
+            if nova_dist < dist[vizinho]: # se tem caminho melhor
+                dist[vizinho] = nova_dist # relaxamento
+                # add nova priorid. menor para vizinho na min-heap
+                heappush(heap, (nova_dist, vizinho))
+    return dist
+
+grafo = [
+    [(1, 4), (2, 1)],
+    [(3, 1)],
+    [(1, 2),(3, 5)],
+    []
+]
+# saída: [0, 3, 1, 4]
+print(dijkstra(grafo, 0))
