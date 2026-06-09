@@ -1,0 +1,43 @@
+def find(x, pais):
+    if pais[x] < 0:
+        return x
+    pais[x] = find(pais[x], pais)
+    return pais[x]
+
+def union(u, v, pais):
+    raiz_u, raiz_v = find(u, pais), find(v, pais)
+    if raiz_u == raiz_v:
+        return False
+    if pais[raiz_v] < pais[raiz_u]:
+        raiz_u, raiz_v = raiz_v, raiz_u
+    pais[raiz_u] += pais[raiz_v]
+    pais[raiz_v] = raiz_u
+    return True
+
+def tamanho(x, pais):
+    raiz = find(x, pais)
+    return -pais[raiz]
+
+n = int(input())
+pais = [-1]*n
+sequencia = list(map(int, input().split()))
+for i in range(n):
+    sequencia[i] = (sequencia[i], i)
+
+sequencia.sort()
+for i in range(n):
+    if sequencia[i][1] != i:
+        union(sequencia[i][1], i, pais)
+
+subseq = dict()
+n_grupos = 0
+for i in range(n):
+    raiz = find(i, pais)
+    if raiz not in subseq:
+        subseq[raiz] = []
+        n_grupos += 1
+    subseq[raiz].append(i+1)
+
+print(n_grupos)
+for v in subseq.values():
+    print(len(v), " ".join(map(str, v)))

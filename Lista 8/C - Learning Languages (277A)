@@ -7,8 +7,8 @@ def find(x, pais):
 def union(idioma, pessoa, pais):
     raiz_idioma, raiz_pessoa = find(idioma, pais), find(pessoa, pais)
     if raiz_idioma == raiz_pessoa: return False
-    pais[raiz_idioma] += pais[raiz_pessoa]
-    pais[raiz_pessoa] = raiz_idioma
+    pais[raiz_pessoa] += pais[raiz_idioma]
+    pais[raiz_idioma] = raiz_pessoa
     return True
 
 n, m = map(int, input().split())
@@ -21,8 +21,8 @@ for i in range(n):
         union(i_idioma, i, grafo)
 
 n_comp = 0
-for v in grafo:
-    if v < 0:
+for i in range(n):
+    if grafo[i] < 0:
         n_comp += 1
 print(grafo)
 print(n_comp-1)
