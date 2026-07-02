@@ -1,0 +1,18 @@
+import math
+
+def coef_linear(a, b):
+    xa, ya = a
+    xb, yb = b
+    var_x = xb-xa
+    if var_x == 0:
+        return float('inf')
+    var_y = yb-ya
+    return var_y / var_x
+
+p = []
+for _ in range(3):
+    x, y = map(int, input().split())
+    p.append((x, y))
+
+m = [0]*3
+# pitagoras!
