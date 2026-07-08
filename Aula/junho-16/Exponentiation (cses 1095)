@@ -1,0 +1,6 @@
+mod = pow(10, 9)+7
+n = int(input())
+for _ in range(n):
+    a, b = map(int, input().split())
+    saida = pow(a, b, mod)
+    print(saida)

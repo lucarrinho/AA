@@ -1,0 +1,29 @@
+from sys import setrecursionlimit
+setrecursionlimit(200200)
+
+def dfs(no, grafo, visitados):
+    visitados[no] = True
+    if len(grafo[no]) == 0:
+        print("retornou 1")
+        return 1
+    menor_prof = float('inf')
+    for filho in grafo[no]:
+        if not visitados[filho]:
+            print("acessou")
+            prof_filho = dfs(filho, grafo, visitados)
+            print(prof_filho)
+            if prof_filho < menor_prof:
+                menor_prof = prof_filho
+    return menor_prof + 1
+
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    grafo = [[] for _ in range(n+1)]
+    visitados = [False]*(n+1)
+    for _ in range(n-1):
+        u, v = map(int, input().split())
+        grafo[u].append(v)
+        grafo[v].append(u)
+    profundidade = dfs(1, grafo, visitados)
+    print(profundidade-2)

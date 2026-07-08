@@ -1,0 +1,11 @@
+from math import factorial
+
+mod = pow(10, 9) + 7
+n = int(input())
+for _ in range(n):
+    a, b = map(int, input().split())
+    numerador = factorial(a) % mod
+    denominSemMod = ((factorial(b)%mod) * (factorial(a-b)%mod))%mod
+    denominador = pow(denominSemMod, mod-2, mod)
+    resultado = (numerador * denominador) % mod
+    print(resultado)
