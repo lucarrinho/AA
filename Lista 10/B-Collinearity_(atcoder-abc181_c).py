@@ -2,6 +2,7 @@ def eh_colinear(p1, p2, p3):
     x1, y1 = p1
     x2, y2 = p2
     x3, y3 = p3
+    return (x1-x2)*(y3-y1)==(x3-x1)*(y1-y2)
     
 
 n = int(input())
@@ -16,4 +17,4 @@ for i in range(n):
             if eh_colinear(p[i], p[j], p[k]):
                 print("Yes")
                 exit()
-print("No")j
+print("No")
