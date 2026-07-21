@@ -1,17 +1,21 @@
 from sys import stdin
-input = stdin.readline
-n = int(input())
-moedas = list(map(int, input().split()))
 
-dp = [0]*(n+1)
-#caso base
-dp[0] = 1
-#calcula os demais
-for i in range(1, n+1):
-    #considera as 6 faces do dado
-    for moeda in moedas:
-        #só soma se o valor não for negativo
+n, x = map(int, stdin.readline().split())
+coins = list(map(int, stdin.readline().split())).sort()
+for i in range(n):
+    if coins[i] > x:
+        coins = coins[:i]
+        break
+
+dp = [float('inf')]*(x+1)
+dp[0] = 0
+
+for i in range(1, x+1):
+    for moeda in coins:
         if i - moeda >= 0:
-            #recorrência
-            dp[i] = (dp[i] + dp[i-face]) % mod
-print(dp[n]) #imprime a resposta
+            dp[i] = min(dp[i], 1 + dp[i - moeda])
+
+if dp[x] == float('inf'):
+    print(-1)
+else:
+    print(dp[x])
