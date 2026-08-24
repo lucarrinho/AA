@@ -1,21 +1,21 @@
 from sys import stdin
+input = stdin.readline
 
-n, x = map(int, stdin.readline().split())
-coins = list(map(int, stdin.readline().split())).sort()
-for i in range(n):
-    if coins[i] > x:
-        coins = coins[:i]
-        break
+n, x = map(int, input().split())
+coins = list(map(int, input().split()))
+coins.sort()
 
-dp = [float('inf')]*(x+1)
+INF = 10**9
+dp = [INF]*(x+1)
 dp[0] = 0
 
 for i in range(1, x+1):
     for moeda in coins:
-        if i - moeda >= 0:
-            dp[i] = min(dp[i], 1 + dp[i - moeda])
+        if moeda > i:
+            break
+        dp[i] = min(dp[i], 1 + dp[i - moeda])
 
-if dp[x] == float('inf'):
+if dp[x] == INF:
     print(-1)
 else:
     print(dp[x])
